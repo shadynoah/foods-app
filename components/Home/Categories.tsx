@@ -4,24 +4,28 @@ import { View, Text, Image, ScrollView } from "react-native";
 export default function Categories() {
   const Items = [
     {
-      image: require("../assets/images/shopping-bag.png"),
+      image: require("../../assets/images/shopping-bag.png"),
       text: "Pick Up",
     },
     {
-      image: require("../assets/images/bread.png"),
+      image: require("../../assets/images/bread.png"),
       text: "Bakery Items",
     },
     {
-      image: require("../assets/images/fast-food.png"),
+      image: require("../../assets/images/fast-food.png"),
       text: "Fast Foods",
     },
     {
-      image: require("../assets/images/deals.png"),
+      image: require("../../assets/images/deals.png"),
       text: "Deals",
     },
     {
-      image: require("../assets/images/coffee.png"),
+      image: require("../../assets/images/coffee.png"),
       text: "coffee and tea",
+    },
+    {
+      image: require("../../assets/images/fast-food.png"),
+      text: "Fast Foods",
     },
   ];
   return (
