@@ -4,8 +4,8 @@ import Home from "./screens/Home";
 import ResturantDetail from "./screens/ResturantDetail";
 
 export default function App() {
-  return <Home />;
-  // return <ResturantDetail />;
+  // return <Home />;
+  return <ResturantDetail />;
 }
 
 const styles = StyleSheet.create({
