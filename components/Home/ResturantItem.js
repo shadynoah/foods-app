@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-export default function ResturantItem({ resturantsData }) {
+export default function ResturantItem({ resturantsData, navigation }) {
   return (
     <TouchableOpacity activeOpacity={1} style={{ marginBottom: 30 }}>
       <View style={{ marginTop: 10, padding: 15, backgroundColor: "white" }}>

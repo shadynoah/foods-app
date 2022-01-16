@@ -8,7 +8,7 @@ import { localRestaurants } from "../components/Home/ResturantItem";
 import { useState, useEffect } from "react";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import BottomTabs from "../components/Home/BottomTabs";
-export default function Home() {
+export default function Home({ navigation }) {
   const YELP_API_KEY =
     "HNyX5KGLw72DDHtckRV2XsqLLZkS1uYOJ0UHP1z1YKbWJIk_-8CvHPXrWwmUI08DAiKlZElWhYWoOACkm6qHoObRF5-7MUwJr2-JZLA_LN4UtxkMgNrEYFfcLpTZYXYx";
   const [city, setCity] = useState("San Francisco");
@@ -50,7 +50,10 @@ export default function Home() {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
-        <ResturantItem resturantsData={resturantsData} />
+        <ResturantItem
+          resturantsData={resturantsData}
+          navigation={navigation}
+        />
       </ScrollView>
       <Divider width={2} />
       <BottomTabs />
