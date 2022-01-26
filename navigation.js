@@ -5,16 +5,16 @@ import Home from "./screens/Home";
 import ResturantDetail from "./screens/ResturantDetail";
 
 export default function RootNavigation(params) {
-    const Stack = createStackNavigator();
-    const screenOptions = {
-        headerShown: false;
-    }
-    return (
-        <NavigationContainer >
-            <Stack.Navigator screenOptions={screenOptions} >
-            <Stack.screen name="Home" Component={Home} />
-            <Stack.screen name="ResturantDetail" Component={ResturantDetail} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    )
+  const Stack = createStackNavigator();
+  const screenOptions = {
+    headerShown: false,
+  };
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="RestaurantDetail" component={ResturantDetail} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }

@@ -4,11 +4,25 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 export default function ResturantItem({ resturantsData, navigation }) {
   return (
-    <TouchableOpacity activeOpacity={1} style={{ marginBottom: 30 }}>
-      <View style={{ marginTop: 10, padding: 15, backgroundColor: "white" }}>
-        {resturantsData &&
-          resturantsData.map((resuturant, index) => {
-            return (
+    <View style={{ marginTop: 10, padding: 15, backgroundColor: "white" }}>
+      {resturantsData &&
+        resturantsData.map((resuturant, index) => {
+          return (
+            <TouchableOpacity
+              activeOpacity={1}
+              style={{ marginBottom: 30 }}
+              onPress={() => {
+                console.log("resturant is ", resuturant);
+                navigation.navigate("RestaurantDetail", {
+                  name: resuturant.name,
+                  image: resuturant.image_url,
+                  price: resuturant.price,
+                  reviews: resuturant.reviews_count,
+                  rating: resuturant.rating,
+                  categories: resuturant.categories,
+                });
+              }}
+            >
               <View key={index}>
                 <ResturantImage imageUri={resuturant.image_url} />
                 <ResturantInfo
@@ -16,10 +30,10 @@ export default function ResturantItem({ resturantsData, navigation }) {
                   rating={resuturant.rating}
                 />
               </View>
-            );
-          })}
-      </View>
-    </TouchableOpacity>
+            </TouchableOpacity>
+          );
+        })}
+    </View>
   );
 }
 

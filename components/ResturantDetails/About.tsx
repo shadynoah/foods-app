@@ -5,7 +5,7 @@ const image =
   "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80";
 const title = "title of resturant";
 const description = "description of item 4 starts ⭐  (2999)";
-export default function About({}) {
+export default function About({ route }) {
   const yelpResturantInfo = {
     name: "kitchen",
     image:
@@ -18,7 +18,8 @@ export default function About({}) {
     ],
     rating: "4.0",
   };
-  const { name, image, price, reviews, rating, categories } = yelpResturantInfo;
+  console.log("image is ", route.params);
+  const { name, image, price, reviews, rating, categories } = route.params;
   const foramttedCategories = categories.map((cat) => cat.title).join(" . ");
   const description = `${foramttedCategories} ${
     price ? " • " + price : ""
