@@ -17,7 +17,7 @@ export default function ResturantItem({ resturantsData, navigation }) {
                   name: resuturant.name,
                   image: resuturant.image_url,
                   price: resuturant.price,
-                  reviews: resuturant.reviews_count,
+                  reviews: resuturant.review_count,
                   rating: resuturant.rating,
                   categories: resuturant.categories,
                 });
