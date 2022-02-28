@@ -4,11 +4,14 @@ import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
 import { Divider } from "react-native-elements";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useSelector } from "react-redux";
-
+import OrderItem from "./OrderItem";
 export default function ViewCart({}) {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   // const [activeTab, setActiveTab] = useState("Delivery");
-  const items = useSelector((state) => state.cartreducer.selectedItems.items);
+  const { items, resturantName } = useSelector(
+    (state) => state.cartreducer.selectedItems
+  );
+  console.log("all items", items);
   const total = items
     .map((item) => Number(item.price.replace("$", " ")))
     .reduce((prev, curr) => prev + curr, 0);
@@ -19,28 +22,81 @@ export default function ViewCart({}) {
     currency: "USD",
   });
   console.log("totalUSD are", totalUSD);
+  const style = StyleSheet.create({
+    modalContainer: {
+      flex: 1,
+      justifyContent: "center",
+      backgroundColor: "rgba(0,0,0,0.7)",
+    },
+    modalCheckoutContainer: {
+      backgroundColor: "white",
+      height: "auto",
+      padding: 16,
+      borderWidth: 1,
+    },
+    modalCheckoutButton: {
+      textAlign: "center",
+      fontWeight: "600",
+      fontSize: 18,
+      marginBottom: 10,
+    },
+    subtotalContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginTop: 15,
+    },
+    subTotalText: {
+      textAlign: "left",
+      fontWeight: "600",
+      fontSize: 15,
+      marginBottom: 10,
+    },
+    restaurantName: {
+      textAlign: "center",
+      fontWeight: "600",
+      fontSize: 18,
+      marginBottom: 10,
+    },
+  });
   const checkModalContent = () => {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: 30,
-        }}
-      >
-        <View
-          style={{
-            backgroundColor: "black",
-            padding: 10,
-            borderRadius: 30,
-            width: 150,
-            alignItems: "center",
-          }}
-        >
-          <TouchableOpacity onPress={() => setIsVisibleModal(false)}>
-            <Text style={{ color: "white" }}>CheckOut</Text>
-          </TouchableOpacity>
+      <View style={style.modalContainer}>
+        <View style={style.modalCheckoutContainer}>
+          <Text style={style.restaurantName}>{resturantName}</Text>
+          {items.map((item, index) => {
+            return <OrderItem key={index} item={item} />;
+          })}
+          <View style={style.subtotalContainer}>
+            <Text style={style.subTotalText}>Subtotal</Text>
+            <Text>{totalUSD}</Text>
+          </View>
+          <View style={{ flexDirection: "row", justifyContent: "center" }}>
+            <TouchableOpacity
+              style={{
+                marginTop: 20,
+                backgroundColor: "black",
+                borderRadius: 30,
+                position: "relative",
+                paddingHorizontal: 100,
+                paddingVertical: 10,
+              }}
+              onPress={() => {
+                setIsVisibleModal(false);
+              }}
+            >
+              <Text style={{ color: "white", fontSize: 20 }}>CheckOut</Text>
+              <Text
+                style={{
+                  color: "white",
+                  position: "absolute",
+                  right: 10,
+                  top: 15,
+                }}
+              >
+                {total ? totalUSD : ""}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
