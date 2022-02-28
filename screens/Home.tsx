@@ -16,7 +16,6 @@ export default function Home({ navigation }) {
   console.log("activeTab is", activeTab);
   const [resturantsData, setRestaurantData] = useState(localRestaurants);
   const getRestaurantsFromYelp = () => {
-    alert("will fetch");
     const yelpUrl = `9QmlZshA8T_kO_jdRU7nOg`;
     const apiOptions = {
       headers: {

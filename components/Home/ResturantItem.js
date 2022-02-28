@@ -9,6 +9,7 @@ export default function ResturantItem({ resturantsData, navigation }) {
         resturantsData.map((resuturant, index) => {
           return (
             <TouchableOpacity
+              key={index}
               activeOpacity={1}
               style={{ marginBottom: 30 }}
               onPress={() => {
