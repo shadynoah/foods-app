@@ -5,6 +5,11 @@ import { Divider } from "react-native-elements";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { useSelector } from "react-redux";
 import OrderItem from "./OrderItem";
+import { initializeApp } from "firebase/app";
+import { useEffect } from "react";
+import { getFirestore, setDoc, doc } from "firebase/firestore";
+
+// import "firebase/firestore";
 export default function ViewCart({}) {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   // const [activeTab, setActiveTab] = useState("Delivery");
@@ -12,6 +17,20 @@ export default function ViewCart({}) {
     (state) => state.cartreducer.selectedItems
   );
   console.log("all items", items);
+  const firebaseConfig = {
+    apiKey: "AIzaSyBb_zi0OnHE8EZRyw5hhb4lebL_CJjWCDw",
+    authDomain: "food-app-cfda0.firebaseapp.com",
+    projectId: "food-app-cfda0",
+    storageBucket: "food-app-cfda0.appspot.com",
+    messagingSenderId: "95514348764",
+    appId: "1:95514348764:web:429a206467bb25da81f819",
+  };
+  let x = initializeApp(firebaseConfig);
+  console.log("x is", x);
+
+  useEffect(() => {
+    // initializeApp(firebaseConfig);
+  }, []);
   const total = items
     .map((item) => Number(item.price.replace("$", " ")))
     .reduce((prev, curr) => prev + curr, 0);
@@ -58,6 +77,16 @@ export default function ViewCart({}) {
       marginBottom: 10,
     },
   });
+  const addOrderToFireBase = async () => {
+    const firestore = getFirestore();
+
+    await setDoc(doc(firestore, "Orders", "mariokkk"), {
+      employment: "plumbermmmmbbbb",
+      outfitColor: "red",
+      specialAttack: "fireball",
+    });
+    setIsVisibleModal(false);
+  };
   const checkModalContent = () => {
     return (
       <View style={style.modalContainer}>
@@ -81,7 +110,7 @@ export default function ViewCart({}) {
                 paddingVertical: 10,
               }}
               onPress={() => {
-                setIsVisibleModal(false);
+                addOrderToFireBase();
               }}
             >
               <Text style={{ color: "white", fontSize: 20 }}>CheckOut</Text>
